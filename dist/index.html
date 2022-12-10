@@ -7,12 +7,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Do List</title>
     <link rel="stylesheet" href="output.css">
+    <link rel="icon" type="image/x-image" href="./to-do-list.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1 class="text-3xl font-bold underline text-red-600">
-        Hello world!
-    </h1>
+    <div class="grid grid-rows-[2fr_10fr] min-h-screen">
+        <nav class="h-full bg-[#202124] text-[#bdc1c6] flex justify-start items-center text-4xl sm:text-6xl">
+            <div class="flex justify-start items-center">
+                <img src="./checkmark-icon-gb1d026f7e_1280.png" alt="checkmark" class="mx-8 h-12 w-12 sm:h-20 sm:w-20">
+                <div>The Do List</div>
+            </div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+        </nav>
+        <main class="grid grid-cols-[2fr_11fr]">
+            <div class="bg-stone-300">
+                <div class="m-6">
+                    <div class="flex flex-col text-[#3f4147]">
+                        <div class="flex justify-start text-xl text-[#242529] py-4">Directory</div>
+                        <button
+                            class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center"><img
+                                src="inbox-icon.png" alt="inbox picture"
+                                class="h-[1.2rem] w-[2rem] flex justify-start items-center mx-4 toggled">
+                            <div>Inbox</div>
+                        </button>
+                        <button
+                            class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center"><img
+                                src="today.png" alt="cute sun image"
+                                class="h-[2rem] w-[2rem] flex justify-start items-center mx-4">
+                            <div>Today</div>
+                        </button>
+                        <button
+                            class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center"><img
+                                src="calendar.png" alt="calendar image"
+                                class="h-[2rem] w-[2rem] flex justify-start items-center mx-4">
+                            <div>Upcoming</div>
+                        </button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+            <div>input</div>
+        </main>
+    </div>
     <script src="main.js"></script>
 </body>
 
