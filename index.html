@@ -18,7 +18,7 @@
         <nav class="h-full bg-[#202124] text-[#bdc1c6] flex justify-start items-center text-4xl sm:text-6xl">
             <div class="flex justify-start items-center">
                 <img src="./checkmark-icon-gb1d026f7e_1280.png" alt="checkmark" class="mx-8 h-12 w-12 sm:h-20 sm:w-20">
-                <div>The Do List</div>
+                <div class="font-['Courier_New',Courier,monospace;] font-bold">The Do List</div>
             </div>
             <a href="#" class="toggle-button">
                 <span class="bar"></span>
@@ -26,15 +26,15 @@
                 <span class="bar"></span>
             </a>
         </nav>
-        <main class="grid grid-cols-[2fr_11fr]">
+        <main class="w-full flex">
             <div class="bg-stone-300">
-                <div class="m-6">
-                    <div class="flex flex-col text-[#3f4147]">
+                <div class="m-6 flex flex-col gap-4" id="nav">
+                    <div class="flex flex-col text-[#3f4147] w-44">
                         <div class="flex justify-start text-xl text-[#242529] py-4">Directory</div>
                         <button
-                            class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center"><img
+                            class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center h-12"><img
                                 src="inbox-icon.png" alt="inbox picture"
-                                class="h-[1.2rem] w-[2rem] flex justify-start items-center mx-4 toggled">
+                                class="h-[1.2rem] w-[2rem] flex justify-start items-center mx-4">
                             <div>Inbox</div>
                         </button>
                         <button
@@ -50,8 +50,15 @@
                             <div>Upcoming</div>
                         </button>
                     </div>
-                    <div>
-
+                    <div class="flex flex-col text-[#3f4147]">
+                        <div class="flex justify-start text-xl text-[#242529] py-4">Projects</div>
+                        <button class="flex justify-start items-center hover:bg-[#cccccc] h-12">
+                            <div class="mx-4"><span
+                                    class="h-[2px] bg-slate-700 w-[15px] block translate-y-[2px]"></span>
+                                <span class="h-[2px] bg-slate-700 w-[15px] block rotate-[90deg]"></span>
+                            </div>
+                            <div class="flex justify-start items-center">Add Project</div>
+                        </button>
                     </div>
                 </div>
             </div>
