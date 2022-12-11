@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+body {
     font-family: 'Nunito', sans-serif;
 }
 
@@ -10,4 +10,37 @@
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
     background-color: #cccccc;
+}
+
+.toggle-button {
+    position: absolute;
+    top: 3.62rem;
+    right: 2rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+    .toggle-button {
+        display: flex;
+    }
+
+    #nav {
+        display: none;
+        width: 100%;
+    }
+
+    #nav.active {
+        display: flex;
+    }
 }
