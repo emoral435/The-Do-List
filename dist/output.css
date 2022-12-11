@@ -527,37 +527,13 @@ video {
   margin-right: 1rem;
 }
 
-.mx-\[12rem\] {
-  margin-left: 12rem;
-  margin-right: 12rem;
-}
-
-.mx-\[16rem\] {
-  margin-left: 16rem;
-  margin-right: 16rem;
-}
-
-.my-\[16rem\] {
-  margin-top: 16rem;
-  margin-bottom: 16rem;
-}
-
-.my-\[4rem\] {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-
-.my-\[3rem\] {
+.my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
 
-.ml-12 {
-  margin-left: 3rem;
-}
-
-.ml-\[12rem\] {
-  margin-left: 12rem;
+.ml-20 {
+  margin-left: 5rem;
 }
 
 .block {
@@ -592,6 +568,10 @@ video {
   height: 2px;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -612,6 +592,14 @@ video {
   width: 15px;
 }
 
+.w-16 {
+  width: 4rem;
+}
+
+.w-\[70\%\] {
+  width: 70%;
+}
+
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
@@ -621,8 +609,13 @@ video {
   min-width: 80rem;
 }
 
-.max-w-7xl {
-  max-width: 80rem;
+.min-w-min {
+  min-width: -moz-min-content;
+  min-width: min-content;
+}
+
+.basis-\[15\%\] {
+  flex-basis: 15%;
 }
 
 .translate-y-\[2px\] {
@@ -696,6 +689,10 @@ video {
   font-family: 'Courier New',Courier,monospace;;
 }
 
+.font-\[\'Courier_New\'\2c Courier\2c monospace\] {
+  font-family: 'Courier New',Courier,monospace;
+}
+
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -704,11 +701,6 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-7xl {
-  font-size: 4.5rem;
-  line-height: 1;
 }
 
 .text-5xl {
@@ -790,6 +782,11 @@ body {
 }
 
 @media (min-width: 640px) {
+  .sm\:mx-8 {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
   .sm\:h-20 {
     height: 5rem;
   }

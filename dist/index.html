@@ -15,9 +15,9 @@
 
 <body>
     <div class="grid grid-rows-[2fr_10fr] min-h-screen">
-        <nav class="h-full bg-[#202124] text-[#bdc1c6] flex justify-start items-center text-4xl sm:text-6xl">
+        <nav class="h-full bg-[#202124] text-[#bdc1c6] flex justify-start items-center text-4xl">
             <div class="flex justify-start items-center">
-                <img src="./checkmark-icon-gb1d026f7e_1280.png" alt="checkmark" class="mx-8 h-12 w-12 sm:h-20 sm:w-20">
+                <img src="./checkmark-icon-gb1d026f7e_1280.png" alt="checkmark" class="mx-4 sm:mx-8 h-16 w-16">
                 <div class="font-['Courier_New',Courier,monospace;] font-bold">The Do List</div>
             </div>
             <a href="#" class="toggle-button">
@@ -27,7 +27,7 @@
             </a>
         </nav>
         <main class="w-full flex" id="main">
-            <div class="bg-stone-300 min-w-max" id="nav">
+            <div class="bg-stone-300 basis-[15%] min-w-max" id="nav">
                 <div class="m-6 flex flex-col gap-4">
                     <div class="flex flex-col text-[#3f4147]">
                         <div class="flex justify-start text-xl text-[#242529] py-4">Directory</div>
@@ -62,13 +62,21 @@
                     </div>
                 </div>
             </div>
-            <div class="min-w-[80rem] flex justify-start h-full">
-                <div class="flex flex-col gap-8">
-                    <div class="text-5xl" id="title">
-                        title
-                    </div>
-                    <div class="" id="content">
-                        content
+            <div class="w-full flex justify-center h-full">
+                <div class="block w-[70%] my-12">
+                    <div class="flex flex-col gap-8">
+                        <div class="text-5xl font-['Courier_New',Courier,monospace] font-bold" id="title">
+                            Inbox
+                        </div>
+                        <div class="w-full" id="content">
+                            <button class="flex justify-start items-center hover:bg-[#cccccc] h-12 w-full">
+                                <div class="mx-4"><span
+                                        class="h-[2px] bg-slate-700 w-[15px] block translate-y-[2px]"></span>
+                                    <span class="h-[2px] bg-slate-700 w-[15px] block rotate-[90deg]"></span>
+                                </div>
+                                <div class="flex justify-start items-center">Add Project</div>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
