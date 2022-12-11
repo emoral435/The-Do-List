@@ -4,7 +4,7 @@ A simple To-Do-List.
 However, I believe that To Do Lists have the power to change the manner and direction that you live your life in. It gives you a better sense at what you truly prioritize in life.
 Try it out! Thanks!
 
-A website totally generated with JavaScript, and TailwindCSS!
+A website totally generated with JavaScript, TailwindCSS, Webpack, and Web Storage API!
 
 - [How to run](#Configuration)
 

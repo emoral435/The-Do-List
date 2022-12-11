@@ -18,8 +18,10 @@ const domMan = (() => {
     const navToggle = () => {
         const toggleButton = document.getElementsByClassName('toggle-button')[0]
         const navbarLink = document.getElementById('nav')
+        const main = document.getElementById('main')
         toggleButton.addEventListener('click', () => {
             navbarLink.classList.toggle('active')
+            main.classList.toggle('active')
             console.log('navbarLink clicked')
         })
     }

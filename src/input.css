@@ -42,5 +42,11 @@ body {
 
     #nav.active {
         display: flex;
+        flex-direction: column;
+    }
+
+    #main.active {
+        display: flex;
+        flex-direction: column;
     }
 }
