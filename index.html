@@ -35,30 +35,58 @@
                             class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center h-12"><img
                                 src="inbox-icon.png" alt="inbox picture"
                                 class="h-[1.2rem] w-[2rem] flex justify-start items-center mx-4">
-                            <div data-projectname="Inbox">Inbox</div>
+                            <div data-project-name="Inbox" data-id="0">Inbox</div>
                         </button>
                         <button
                             class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center"><img
                                 src="today.png" alt="cute sun image"
                                 class="h-[2rem] w-[2rem] flex justify-start items-center mx-4">
-                            <div data-projectname="Today">Today</div>
+                            <div data-project-name="Today" data-id="1">Today</div>
                         </button>
                         <button
                             class="hover:bg-[#cccccc] rounded-md w-full py-2 directory flex justify-start items-center"><img
                                 src="calendar.png" alt="calendar image"
                                 class="h-[2rem] w-[2rem] flex justify-start items-center mx-4">
-                            <div data-projectname="Upcoming">Upcoming</div>
+                            <div data-project-name="Upcoming" data-id="2">Upcoming</div>
                         </button>
                     </div>
                     <div class="flex flex-col text-[#3f4147]">
                         <div class="flex justify-start text-xl text-[#242529] py-4">Projects</div>
-                        <button class="flex justify-start items-center hover:bg-[#cccccc] h-12">
+                        <button class="flex justify-start items-center hover:bg-[#cccccc] h-12"
+                            data-modal-target="#projectModal">
                             <div class="mx-4"><span
                                     class="h-[2px] bg-slate-700 w-[15px] block translate-y-[2px]"></span>
                                 <span class="h-[2px] bg-slate-700 w-[15px] block rotate-[90deg]"></span>
                             </div>
                             <div class="flex justify-start items-center">Add Project</div>
                         </button>
+                        <div class="modal" id="projectModal">
+                            <div class="modal-header">
+                                <div class="title">New Project</div>
+                                <button data-close-button class="close-button">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" id="projectForm">
+                                    <div class="flex flex-col">
+                                        <label for="name">Name:</label>
+                                        <input type="text" id="name"
+                                            title="Input the project name that you want to be displayed on the dashboard"
+                                            required
+                                            class="bg-white border-[1px] border-black h-[2em] focus:border-[2px] focus:border-[#2994b2] focus:outline-none">
+                                    </div>
+                                    <div class="flex justify-end">
+                                        <button type="submit" id="addProject" form="projectForm"
+                                            class="flex text-xl my-2">
+                                            <div class="mx-2 relative top-[10px]"><span
+                                                    class="h-[2px] bg-slate-700 w-[12px] block translate-y-[2px]"></span>
+                                                <span class="h-[2px] bg-slate-700 w-[12px] block rotate-[90deg]"></span>
+                                            </div>Add
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="overlay"></div>
                     </div>
                 </div>
             </div>
