@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Nunito', sans-serif;
 }
+
+/* everything under here is so that the navbar works properly */
 
 .toggled {
     font-family: 'Courier New', Courier, monospace;
@@ -49,4 +57,70 @@ body {
         display: flex;
         flex-direction: column;
     }
+}
+
+/* everything under here is so that the modal popups look correct! */
+
+.modal {
+    font-family: 'Courier New', Courier, monospace;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    /* background-color: white; */
+    background-color: #cccccc;
+    width: 600px;
+    max-width: 80%;
+    box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, .15);
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(184, 184, 184);
+}
+
+.modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
