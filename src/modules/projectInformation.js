@@ -11,7 +11,6 @@ const projectInformation = (() => {
         let element = iFactory(project.dataset.projectName)
         projectArray.push(element)
     })
-    console.log(projectArray)
     return {nameArray, projectArray}
 })();
 

@@ -11,3 +11,5 @@ domMan.navToggle()
 domMan.activateModals()
 // this makes it so that each time you submit a project, it appears on the dom 
 domMan.addProject()
+// this makes it so that each time you submit a task, it goes into the respective object
+domMan.addTask()

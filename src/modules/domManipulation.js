@@ -2,6 +2,8 @@ import projectInformation from "./projectInformation";
 import updateButtons from "./updateButtons";
 import iFactory from "./informationFactory";
 import killProject from "./killProject";
+import getId from "./getId";
+import makeTask from "./makeTask";
 
 
 const domMan = (() => {
@@ -143,11 +145,35 @@ const domMan = (() => {
         }
     }
 
+    const addTask = () => {
+        document.getElementById('addTask').addEventListener('click', (event) => {
+            event.preventDefault();
+            additionalTask()
+        })
+    }
+    
+    function additionalTask() {
+        // this checks where the task is being placed in
+        const title = document.getElementById('title')
+        let index = getId(title)
+        let objective = document.getElementById('objective').value
+        let description = document.getElementById('description').value
+        let priority = document.getElementById('priority').value
+        let date = document.getElementById('date').value
+        projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
+        console.log(projectInformation.projectArray[index].tasks)
+        document.getElementById('objective').value = ''
+        document.getElementById('description').value = ''
+        document.getElementById('priority').value = '0'
+        document.getElementById('date').value = ''
+    }
+
     return {
         buttonChange,
         navToggle,
         activateModals,
         addProject,
+        addTask,
     }
 })();
 
