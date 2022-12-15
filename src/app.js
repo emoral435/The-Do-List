@@ -1,5 +1,6 @@
 import domMan from './modules/domManipulation'
 import projectInformation from './modules/projectInformation'
+import storage from './modules/localStorage'
  
 console.log({testString: 'This is working, along with Tailwind!'})
 
@@ -9,6 +10,10 @@ domMan.buttonChange()
 domMan.navToggle() 
 // this actives the popups that come up when you press add project and add task
 domMan.activateModals()
+
+// this checks local storage if there are any previous projects, and it loads it
+storage.initialize()
+
 // this makes it so that each time you submit a project, it appears on the dom 
 domMan.addProject()
 // this makes it so that each time you submit a task, it goes into the respective object

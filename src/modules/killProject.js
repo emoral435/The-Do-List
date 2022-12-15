@@ -1,5 +1,6 @@
 import updateButtons from "./updateButtons"
 import projectInformation from "./projectInformation"
+import storage from "./localStorage"
 
 export default function killProject() {
     let kill = document.querySelectorAll('.killbill')
@@ -14,6 +15,7 @@ export default function killProject() {
                 let id = prev.dataset.id
                 projectInformation.nameArray.splice(id, 1)
                 projectInformation.projectArray.splice(id, 1)
+                storage.updateProjectInfo(projectInformation)
                 btn.parentElement.remove()
             })
         })

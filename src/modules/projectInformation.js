@@ -1,4 +1,5 @@
 import iFactory from "./informationFactory";
+import storage from "./localStorage";
 
 const projectInformation = (() => {
     // this is the project name information array that will be associated with the task information object array

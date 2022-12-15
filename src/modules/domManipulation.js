@@ -4,22 +4,32 @@ import iFactory from "./informationFactory";
 import killProject from "./killProject";
 import getId from "./getId";
 import makeTask from "./makeTask";
-
+import storage from "./localStorage";
 
 const domMan = (() => {
+    const title = document.getElementById('title')
+
     const buttonChange = () => {
         let domBtn = document.querySelectorAll('.directory')
-        domBtn.forEach( btn => {
-            btn.addEventListener('click', () => {
-                domBtn.forEach ( btn => {
+        for (let i = 0; i < domBtn.length; i++) {
+            domBtn[i].addEventListener('click', () => {
+                domBtn.forEach( btn => {
                     if (btn.classList.contains('toggled')) {
-                        btn.classList.remove('toggled');
+                        btn.classList.remove('toggled')
                     }
                 })
-                btn.classList.add('toggled')
-            })
-        })
-    };
+                let divChild = domBtn[i].childNodes
+                let text
+                if (divChild.length > 3) {
+                    text = divChild[3].textContent
+                } else {
+                    text = divChild[1].textContent
+                }
+                domBtn[i].classList.add('toggled')
+                title.textContent = text
+                })
+            }
+        }
 
     const navToggle = () => {
         const toggleButton = document.getElementsByClassName('toggle-button')[0]
@@ -92,9 +102,9 @@ const domMan = (() => {
             if (j == 0) {
                 let element = iFactory(projectName)
                 projectInformation.projectArray.push(element)
-                console.log(projectInformation.projectArray)
-                const addOn = document.getElementById('additionalProjects')
                 projectInformation.nameArray.push(projectName)
+                storage.updateProjectInfo(projectInformation)
+                const addOn = document.getElementById('additionalProjects')
                 const btn = makeBtn(["hover:bg-[#cccccc]", "rounded-md", "w-full", "py-2", "flex", "justify-between", "items-center", "h-12", "px-1", 'directory'])
                 const img = makeImg(["h-[1.3rem]", "w-[1.3rem]", "flex", "justify-start", "items-center", "mx-4", "box-content"])
                 const div = makeDiv(projectName)
@@ -154,18 +164,17 @@ const domMan = (() => {
     
     function additionalTask() {
         // this checks where the task is being placed in
-        const title = document.getElementById('title')
         let index = getId(title)
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
         projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
-        console.log(projectInformation.projectArray[index].tasks)
         document.getElementById('objective').value = ''
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
+        storage.updateProjectInfo(projectInformation)
     }
 
     return {
