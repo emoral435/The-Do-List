@@ -96,7 +96,35 @@
                         <div class="text-5xl font-['Courier_New',Courier,monospace] font-bold" id="title">
                             Inbox
                         </div>
-                        <div class="w-full" id="content">
+                        <div class="w-full flex flex-col gap-2" id="content">
+                            <div
+                                class="flex justify-between hover:bg-[#cccccc] min-h-[3rem] items-center hover:relative hover:bottom-1 hover:shadow-xl flex-col lg:flex-row py-2">
+                                <div class="flex items-start justify-start lg:justify-start lg:items-center w-full">
+                                    <span
+                                        class="min-h-[20px] min-w-[20px] inline-block bg-white border-red-500 border-[3px] rounded-[50%] hover:bg-slate-300 mx-3"></span>
+                                    <div> Task Name </div>
+                                </div>
+                                <div class="flex gap-6 mr-8">
+                                    <button>Details</button>
+                                    <img src="/src/modules/edit.svg" alt="edit" class="h-6 w-6 hover:text-blue"
+                                        class="cursor-pointer">
+                                    <img src="/src/modules/trash.svg" alt="delete" class="h-6 w-6"
+                                        class="cursor-pointer">
+                                </div>
+                            </div>
+                            <div
+                                class="flex justify-between hover:bg-[#cccccc] h-12 items-center hover:relative hover:bottom-1 hover:shadow-xl">
+                                <div class="flex justify-start items-center">
+                                    <span
+                                        class="h-5 w-5 inline-block bg-white border-red-500 border-[3px] rounded-[50%] hover:bg-slate-300 mx-3"></span>
+                                    <div> Task Name </div>
+                                </div>
+                                <div class="flex gap-6 mr-4">
+                                    <div>Due Date</div>
+                                    <img src="/src/modules/edit.svg" alt="edit" class="h-6 w-6 hover:text-blue">
+                                    <img src="/src/modules/trash.svg" alt="delete" class="h-6 w-6">
+                                </div>
+                            </div>
                             <button class="flex justify-start items-center hover:bg-[#cccccc] h-12 w-full"
                                 data-modal-target="#taskModal">
                                 <div class="mx-4"><span
@@ -133,10 +161,10 @@
                                                         <select name="priority" id="priority"
                                                             class="bg-white border-[1px] border-black h-7 focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
                                                             required>
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
+                                                            <option value="0">None</option>
+                                                            <option value="1">Low</option>
+                                                            <option value="2">Medium</option>
+                                                            <option value="3">High</option>
                                                         </select>
                                                     </div>
                                                     <div class="flex flex-col">

@@ -7,7 +7,6 @@ import makeTask from "./makeTask";
 import storage from "./localStorage";
 
 const domMan = (() => {
-    const title = document.getElementById('title')
 
     const buttonChange = () => {
         let domBtn = document.querySelectorAll('.directory')
@@ -18,6 +17,7 @@ const domMan = (() => {
                         btn.classList.remove('toggled')
                     }
                 })
+                const title = document.getElementById('title')
                 let divChild = domBtn[i].childNodes
                 let text
                 if (divChild.length > 3) {
@@ -164,12 +164,16 @@ const domMan = (() => {
     
     function additionalTask() {
         // this checks where the task is being placed in
+        const title = document.getElementById('title').innerHTML
+        console.log(title)
         let index = getId(title)
+        console.log(index)
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
         projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
+        projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
         document.getElementById('objective').value = ''
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
