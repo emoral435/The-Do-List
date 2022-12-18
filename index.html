@@ -93,9 +93,7 @@
             <div class="w-full flex justify-center h-full">
                 <div class="block w-[70%] my-12">
                     <div class="flex flex-col gap-8">
-                        <div class="text-5xl font-['Courier_New',Courier,monospace] font-bold" id="title">
-                            Inbox
-                        </div>
+                        <div class="text-5xl font-['Courier_New',Courier,monospace] font-bold" id="title">Inbox</div>
                         <div class="w-full flex flex-col gap-2" id="content">
                             <div>
                                 <div
@@ -107,87 +105,93 @@
                                         <div>Task Name</div>
                                     </div>
                                     <div class="flex gap-6 mr-8">
-                                        <button data-modal-target="#newModal"
-                                            class="hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">Details</button>
+                                        <div>
+                                            <button data-modal-target="#newModal"
+                                                class="hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">Details</button>
+                                            <div class="modal" id="newModal">
+                                                <div class="modal-header">
+                                                    <div class="title">Task Details</div>
+                                                    <button data-close-button class="close-button">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>Title:</div>
+                                                    <div>Description:</div>
+                                                    <div>Due Date:</div>
+                                                    <div>Priority:</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <img src="/src/modules/edit.svg" alt="edit"
                                             class="h-6 w-6 cursor-pointer hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300"
                                             data-modal-target="#otherModal">
+                                        <div class="modal" id="otherModal">
+                                            <div class="modal-header">
+                                                <div class="title">Edit Task</div>
+                                                <button data-close-button class="close-button">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="" id="taskForm">
+                                                    <div class="flex flex-col gap-2">
+                                                        <div class="flex flex-col">
+                                                            <label for="objective">Objective:</label>
+                                                            <input type="text" id="objective"
+                                                                title="Input the task title that you want to be displayed on the dashboard"
+                                                                required
+                                                                class="bg-white border-[1px] border-black h-[2em] focus:border-[2px] focus:border-[#2994b2] focus:outline-none">
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <label for="description">Description:</label>
+                                                            <textarea name="description" id="description" cols="5"
+                                                                rows="5"
+                                                                class="bg-white border-[1px] border-black focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
+                                                                required></textarea>
+                                                        </div>
+                                                        <div class="flex justify-around">
+                                                            <div class="flex justify-start gap-12">
+                                                                <div class="flex flex-col">
+                                                                    <label for="priority">Priority:</label>
+                                                                    <select name="priority" id="priority"
+                                                                        class="bg-white border-[1px] border-black h-7 focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
+                                                                        required>
+                                                                        <option value="0">None</option>
+                                                                        <option value="1">Low</option>
+                                                                        <option value="2">Medium</option>
+                                                                        <option value="3">High</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="flex flex-col">
+                                                                    <label for="date">Date:</label>
+                                                                    <input type="date"
+                                                                        class="bg-white border-[1px] border-black focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
+                                                                        id="date">
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" id="addTask" form="taskForm"
+                                                                class="flex text-xl my-2 items-center">
+                                                                <div class="mx-2 relative">
+                                                                    <span
+                                                                        class="h-[2px] bg-slate-700 w-[12px] block translate-y-[2px]"></span>
+                                                                    <span
+                                                                        class="h-[2px] bg-slate-700 w-[12px] block rotate-[90deg]"></span>
+                                                                </div>
+                                                                <div>Add</div>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex justify-end">
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                         <img src="/src/modules/trash.svg" alt="delete"
                                             class="h-6 w-6 cursor-pointer trash hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300">
                                     </div>
                                 </div>
-                                <div class="modal" id="newModal">
-                                    <div class="modal-header">
-                                        <div class="title">Task Details</div>
-                                        <button data-close-button class="close-button">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div>Title:</div>
-                                        <div>Description:</div>
-                                        <div>Due Date:</div>
-                                        <div>Priority:</div>
-                                    </div>
-                                </div>
-                                <div class="modal" id="otherModal">
-                                    <div class="modal-header">
-                                        <div class="title">Edit Task</div>
-                                        <button data-close-button class="close-button">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="" id="taskForm">
-                                            <div class="flex flex-col gap-2">
-                                                <div class="flex flex-col">
-                                                    <label for="objective">Objective:</label>
-                                                    <input type="text" id="objective"
-                                                        title="Input the task title that you want to be displayed on the dashboard"
-                                                        required
-                                                        class="bg-white border-[1px] border-black h-[2em] focus:border-[2px] focus:border-[#2994b2] focus:outline-none">
-                                                </div>
-                                                <div class="flex flex-col">
-                                                    <label for="description">Description:</label>
-                                                    <textarea name="description" id="description" cols="5" rows="5"
-                                                        class="bg-white border-[1px] border-black focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
-                                                        required></textarea>
-                                                </div>
-                                                <div class="flex justify-around">
-                                                    <div class="flex justify-start gap-12">
-                                                        <div class="flex flex-col">
-                                                            <label for="priority">Priority:</label>
-                                                            <select name="priority" id="priority"
-                                                                class="bg-white border-[1px] border-black h-7 focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
-                                                                required>
-                                                                <option value="0">None</option>
-                                                                <option value="1">Low</option>
-                                                                <option value="2">Medium</option>
-                                                                <option value="3">High</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="flex flex-col">
-                                                            <label for="date">Date:</label>
-                                                            <input type="date"
-                                                                class="bg-white border-[1px] border-black focus:border-[2px] focus:border-[#2994b2] focus:outline-none"
-                                                                id="date">
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit" id="addTask" form="taskForm"
-                                                        class="flex text-xl my-2 items-center">
-                                                        <div class="mx-2 relative"><span
-                                                                class="h-[2px] bg-slate-700 w-[12px] block translate-y-[2px]"></span>
-                                                            <span
-                                                                class="h-[2px] bg-slate-700 w-[12px] block rotate-[90deg]"></span>
-                                                        </div>Add
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end">
 
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                             <button class="flex justify-start items-center hover:bg-[#cccccc] h-12 w-full"
-                                data-modal-target="#taskModal">
+                                data-modal-target="#taskModal" id="taskButton">
                                 <div class="mx-4"><span
                                         class="h-[2px] bg-slate-700 w-[15px] block translate-y-[2px]"></span>
                                     <span class="h-[2px] bg-slate-700 w-[15px] block rotate-[90deg]"></span>

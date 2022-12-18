@@ -586,6 +586,10 @@ video {
   height: 1.5rem;
 }
 
+.h-\[2px\] {
+  height: 2px;
+}
+
 .h-12 {
   height: 3rem;
 }
@@ -610,10 +614,6 @@ video {
   height: 2rem;
 }
 
-.h-\[2px\] {
-  height: 2px;
-}
-
 .h-\[2em\] {
   height: 2em;
 }
@@ -634,8 +634,17 @@ video {
   min-height: 3rem;
 }
 
+.min-h-min {
+  min-height: -moz-min-content;
+  min-height: min-content;
+}
+
 .w-6 {
   width: 1.5rem;
+}
+
+.w-\[12px\] {
+  width: 12px;
 }
 
 .w-full {
@@ -658,12 +667,12 @@ video {
   width: 15px;
 }
 
-.w-\[12px\] {
-  width: 12px;
-}
-
 .w-\[70\%\] {
   width: 70%;
+}
+
+.w-\[10rem\] {
+  width: 10rem;
 }
 
 .min-w-\[20px\] {
@@ -789,6 +798,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-slate-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#202124\] {
   --tw-bg-opacity: 1;
   background-color: rgb(32 33 36 / var(--tw-bg-opacity));
@@ -797,11 +811,6 @@ video {
 .bg-stone-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 209 / var(--tw-bg-opacity));
-}
-
-.bg-slate-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
 .py-2 {
@@ -867,10 +876,6 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.duration-200 {
-  transition-duration: 200ms;
 }
 
 .duration-300 {
@@ -1037,18 +1042,6 @@ body {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:duration-200:hover {
-  transition-duration: 200ms;
-}
-
-.hover\:duration-300:hover {
-  transition-duration: 300ms;
-}
-
-.hover\:ease-in-out:hover {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .focus\:border-\[2px\]:focus {
