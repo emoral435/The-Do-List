@@ -3,10 +3,10 @@ import uploadTasks from "./uploadTasks"
 
 const storage = (() => {
     const initialize = () => {
-        updateProjectInfo(projectInformation)
-        console.log(getProjectItem().projectArray[0].tasks)
+        let newObject = getProjectItem()
+        updateProjectInfo(newObject)
         if (getProjectItem().projectArray[0].tasks.length === 0) {
-            uploadTasks(getProjectItem().projectArray[0].tasks)
+            // uploadTasks(getProjectItem().projectArray[0].tasks)
         }
     }
 

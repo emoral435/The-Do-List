@@ -5,6 +5,7 @@ import killProject from "./killProject";
 import getId from "./getId";
 import makeTask from "./makeTask";
 import storage from "./localStorage";
+import uploadTasks from "./uploadTasks";
 
 const domMan = (() => {
 
@@ -164,9 +165,9 @@ const domMan = (() => {
     
     function additionalTask() {
         // this checks where the task is being placed in
-        const title = document.getElementById('title').innerHTML
+        const title = document.getElementById('title')
         console.log(title)
-        let index = getId(title)
+        let index = getId(title.innerHTML)
         console.log(index)
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
@@ -178,6 +179,9 @@ const domMan = (() => {
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
+        let taskIndex = projectArray[index].tasks.length - 1
+        let newTask = uploadTasks.upload(taskIndex)
+        insertBefore(newTask, document.getElementById('taskButton'))
         storage.updateProjectInfo(projectInformation)
     }
 
