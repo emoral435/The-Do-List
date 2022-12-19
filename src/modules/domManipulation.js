@@ -168,21 +168,31 @@ const domMan = (() => {
         const title = document.getElementById('title')
         console.log(title)
         let index = getId(title.innerHTML)
-        console.log(index)
+        console.log(projectInformation.projectArray[index].tasks.length)
+        console.log(projectInformation.projectArray[index].tasks)
+        console.log('clicked')
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
-        projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
-        projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
+        if (title.textContent != 'Index') {
+            console.log(title.textContent)
+            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
+            projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
+        } else {
+            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
+        }
         document.getElementById('objective').value = ''
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
-        let taskIndex = projectArray[index].tasks.length - 1
+        let taskIndex = projectInformation.projectArray[index].tasks.length - 1
+        console.log(taskIndex)
+        console.log(projectInformation.projectArray[index].tasks.length)
+        console.log(projectInformation.projectArray[index].tasks)
         let newTask = uploadTasks.upload(taskIndex)
-        insertBefore(newTask, document.getElementById('taskButton'))
         storage.updateProjectInfo(projectInformation)
+        document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
     }
 
     return {

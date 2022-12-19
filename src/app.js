@@ -19,5 +19,3 @@ storage.initialize()
 domMan.addProject()
 // this makes it so that each time you submit a task, it goes into the respective object
 domMan.addTask()
-
-createModal.editModal(1)

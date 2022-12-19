@@ -106,7 +106,6 @@ const createModal = (() => {
         form.append(container)
         modalBody.append(form)
         godDiv.append(modalBody)
-        console.log(godDiv)
         return godDiv
     }
 

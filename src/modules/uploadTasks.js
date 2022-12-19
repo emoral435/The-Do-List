@@ -5,7 +5,7 @@ const uploadTasks = (() => {
     const upload = (id, priority) => {
         let taskDiv = newElement.makeDiv()
         let grandFather = newElement.makeDiv('rounded-[10px] flex justify-between hover:bg-[#cccccc] min-h-[3rem] items-center hover:relative hover:bottom-1 hover:shadow-xl flex-col lg:flex-row py-2')
-        let taskName = makeDiv('flex items-start justify-start lg:justify-start lg:items-center w-full')
+        let taskName = newElement.makeDiv('flex items-start justify-start lg:justify-start lg:items-center w-full')
         let circle = newElement.circleSpan(id)
         circle.addEventListener('click', deleteTask(id))
         let taskNameStringDiv = newElement.makeDiv('','','Task Details')
@@ -37,7 +37,7 @@ const uploadTasks = (() => {
     }
 
     function deleteTask(id) {
-        console.log('work in progress, will either use closest or see the title id contents!')
+        console.log('work in progress, will either use closest or see the title id contents! and delete from the project directory and well as the inbox directory')
     }
 
     function openModal(modal) {

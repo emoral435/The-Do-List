@@ -60,7 +60,7 @@ const newElement = (() => {
         let array = str.split(' ')
         let span = document.createElement('span')
         for (let i = 0; i < array.length; i++) {
-            parseInt.classList.add(array[i])
+            span.classList.add(array[i])
         }
         span.dataset.id = id
         return span
