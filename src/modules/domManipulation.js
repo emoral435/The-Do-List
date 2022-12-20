@@ -6,6 +6,7 @@ import getId from "./getId";
 import makeTask from "./makeTask";
 import storage from "./localStorage";
 import uploadTasks from "./uploadTasks";
+import updateDirectory from "./updateDirectory";
 
 const domMan = (() => {
 
@@ -54,13 +55,6 @@ const domMan = (() => {
             })
         })
 
-        overlay.addEventListener('click', () => {
-            const modals = document.querySelectorAll('.modal-active')
-            modals.foreEach( modal => {
-                closeModal(modal)
-            })
-        })
-
         closeModalButtons.forEach( btn => {
             btn.addEventListener('click', () => {
                 const modal = btn.closest('.modal')
@@ -89,6 +83,7 @@ const domMan = (() => {
 
         function additionalProject() {
             const projectName = document.getElementById('name').value
+            console.log(projectName)
             document.getElementById('name').value = ''
             let i = 0
             let j =0
@@ -117,7 +112,12 @@ const domMan = (() => {
                 updateButtons(document.querySelectorAll('.directory'))
                 buttonChange()
                 killProject()
-                
+                let clicked = document.querySelectorAll('.directory')
+                clicked.forEach( btn => {
+                    btn.addEventListener('click', () => {
+                        updateDirectory.refresh(projectName)
+                    })
+                })
             }
         }
 
@@ -166,17 +166,13 @@ const domMan = (() => {
     function additionalTask() {
         // this checks where the task is being placed in
         const title = document.getElementById('title')
-        console.log(title)
         let index = getId(title.innerHTML)
-        console.log(projectInformation.projectArray[index].tasks.length)
-        console.log(projectInformation.projectArray[index].tasks)
         console.log('clicked')
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
-        if (title.textContent != 'Index') {
-            console.log(title.textContent)
+        if (title.textContent != 'Inbox') {
             projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
             projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
         } else {
@@ -187,9 +183,6 @@ const domMan = (() => {
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
         let taskIndex = projectInformation.projectArray[index].tasks.length - 1
-        console.log(taskIndex)
-        console.log(projectInformation.projectArray[index].tasks.length)
-        console.log(projectInformation.projectArray[index].tasks)
         let newTask = uploadTasks.upload(taskIndex)
         storage.updateProjectInfo(projectInformation)
         document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))

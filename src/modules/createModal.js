@@ -5,7 +5,7 @@ import getId from "./getId"
 const createModal = (() => {
     const taskModal = (id) => {
         let strModal = id + 'Modal'
-        let godDiv = newElement.makeDiv('modal', strModal)
+        let godDiv = newElement.makeDiv('modal break-normal', strModal)
         let modalHeader = newElement.makeDiv('modal-header')
         let closeBtn = newElement.makeButton('close-button', '', '')
         closeBtn.innerHTML = '&times;'
@@ -22,10 +22,10 @@ const createModal = (() => {
         for (let i = 0; i < projectInformation.nameArray.length; i++) {
             if (projectInformation.nameArray[i] == title) {
                 j = i
-                console.log('running')
             }
         }
-        modalBody.append(newElement.makeDiv('','', ('Title: ' + title)))
+        modalBody.append(newElement.makeDiv('','', ('Project: ' + title)))
+        modalBody.append(newElement.makeDiv('','', ('Title: ' + projectInformation.projectArray[j].tasks[id].objective)))
         modalBody.append(newElement.makeDiv('','', ('Description: ' + projectInformation.projectArray[j].tasks[id].desc)))
         modalBody.append(newElement.makeDiv('','', ('Due Date: ' + projectInformation.projectArray[j].tasks[id].date)))
         modalBody.append(newElement.makeDiv('','', ('Priority: ' + projectInformation.projectArray[j].tasks[id].priority)))

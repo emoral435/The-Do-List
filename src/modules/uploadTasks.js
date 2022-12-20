@@ -1,5 +1,8 @@
 import newElement from "./createElements"
 import createModal from "./createModal"
+import projectInformation from "./projectInformation"
+import getId from "./getId"
+import killTask from "./killTask"
 
 const uploadTasks = (() => {
     const upload = (id, priority) => {
@@ -7,16 +10,22 @@ const uploadTasks = (() => {
         let grandFather = newElement.makeDiv('rounded-[10px] flex justify-between hover:bg-[#cccccc] min-h-[3rem] items-center hover:relative hover:bottom-1 hover:shadow-xl flex-col lg:flex-row py-2')
         let taskName = newElement.makeDiv('flex items-start justify-start lg:justify-start lg:items-center w-full')
         let circle = newElement.circleSpan(id)
-        circle.addEventListener('click', deleteTask(id))
-        let taskNameStringDiv = newElement.makeDiv('','','Task Details')
+        circle.addEventListener('click', () => {
+            killTask.kill(id)
+        })
+        let title = document.getElementById('title')
+        let index = getId(title.innerHTML)
+        let objectTitle = projectInformation.projectArray[index].tasks[id].objective
+        let taskNameStringDiv = newElement.makeDiv('','', objectTitle)
         taskName.append(circle, taskNameStringDiv)
         grandFather.append(taskName)
         let taskHub = newElement.makeDiv("flex gap-6 mr-8")
         let detailDiv = newElement.makeDiv()
         let detailsButton = newElement.makeButton("hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300", "", "Details")
-        detailsButton.dataset.modalTarget = '#' + id + 'Modal'
+        detailsButton.dataset.modalTarget = id + 'Modal'
         detailsButton.addEventListener('click', () => {
-            let detailsModal = document.querySelector(detailsButton.dataset.modalTarget)
+            let detailsModal = document.getElementById(detailsButton.dataset.modalTarget)
+            // console.log(detailsModal)
             openModal(detailsModal)
         })
         let taskModal = createModal.taskModal(id)
@@ -30,14 +39,13 @@ const uploadTasks = (() => {
         let otherEditModal = createModal.editModal(id)
         taskHub.append(editImg, otherEditModal)
         let trashImg = newElement.makeTrashImg(id)
+        trashImg.addEventListener('click', () => {
+            killTask.kill(id)
+        })
         taskHub.append(trashImg)
         grandFather.append(taskHub)
         taskDiv.append(grandFather)
         return taskDiv
-    }
-
-    function deleteTask(id) {
-        console.log('work in progress, will either use closest or see the title id contents! and delete from the project directory and well as the inbox directory')
     }
 
     function openModal(modal) {
