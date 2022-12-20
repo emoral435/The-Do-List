@@ -103,6 +103,7 @@ const domMan = (() => {
                 const btn = makeBtn(["hover:bg-[#cccccc]", "rounded-md", "w-full", "py-2", "flex", "justify-between", "items-center", "h-12", "px-1", 'directory'])
                 const img = makeImg(["h-[1.3rem]", "w-[1.3rem]", "flex", "justify-start", "items-center", "mx-4", "box-content"])
                 const div = makeDiv(projectName)
+                div.classList.add('closest')
                 const x = makeX(['ml-4','z-10','flex','justify-end', 'killbill'])
                 btn.append(img)
                 btn.append(div)
