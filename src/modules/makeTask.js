@@ -1,5 +1,5 @@
-const makeTask = (objective, desc, priority, date) => {
-    return {objective, desc, priority, date}
+const makeTask = (objective, desc, priority, date, project) => {
+    return {objective, desc, priority, date, project}
 }
 
 export default makeTask

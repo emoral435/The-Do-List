@@ -25,7 +25,6 @@ const uploadTasks = (() => {
         detailsButton.dataset.modalTarget = id + 'Modal'
         detailsButton.addEventListener('click', () => {
             let detailsModal = document.getElementById(detailsButton.dataset.modalTarget)
-            // console.log(detailsModal)
             openModal(detailsModal)
         })
         let taskModal = createModal.taskModal(id)

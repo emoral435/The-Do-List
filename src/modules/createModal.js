@@ -24,7 +24,7 @@ const createModal = (() => {
                 j = i
             }
         }
-        modalBody.append(newElement.makeDiv('','', ('Project: ' + title)))
+        modalBody.append(newElement.makeDiv('','', ('Project: ' + projectInformation.projectArray[j].tasks[id].project)))
         modalBody.append(newElement.makeDiv('','', ('Title: ' + projectInformation.projectArray[j].tasks[id].objective)))
         modalBody.append(newElement.makeDiv('','', ('Description: ' + projectInformation.projectArray[j].tasks[id].desc)))
         modalBody.append(newElement.makeDiv('','', ('Due Date: ' + projectInformation.projectArray[j].tasks[id].date)))

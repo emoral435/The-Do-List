@@ -83,7 +83,6 @@ const domMan = (() => {
 
         function additionalProject() {
             const projectName = document.getElementById('name').value
-            console.log(projectName)
             document.getElementById('name').value = ''
             let i = 0
             let j =0
@@ -115,7 +114,7 @@ const domMan = (() => {
                 let clicked = document.querySelectorAll('.directory')
                 clicked.forEach( btn => {
                     btn.addEventListener('click', () => {
-                        updateDirectory.refresh(projectName)
+                        updateDirectory.refresh(btn)
                     })
                 })
             }
@@ -173,8 +172,8 @@ const domMan = (() => {
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
         if (title.textContent != 'Inbox') {
-            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
-            projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
+            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+            projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
         } else {
             projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
         }

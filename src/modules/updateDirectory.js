@@ -4,18 +4,20 @@ import storage from "./localStorage";
 
 
 const updateDirectory = (() => {
-        let refresh = (projectName) => {
-            console.log('working on it')
+        let refresh = (btn) => {
+            let projectName = document.getElementById('title').innerHTML.trim()
             let index = getId(projectName)
             let taskContainer = document.getElementById('content')
-            console.log(taskContainer.childNodes)
-            while (taskContainer.childNodes.length > 5) {
+            while (taskContainer.childNodes.length > 4) {
                 taskContainer.removeChild(taskContainer.firstChild)
             }
-            let projectInfo = storage.getProjectItem()
-            if (projectInfo.projectArray[index].tasks.length > 0) {
-                for (let i = 0; i < projectInfo.projectArray.length; i++) {
-                    uploadTasks.upload(i)
+            if (!btn.classList.contains('gettingDeleted')) {
+                let projectInfo = storage.getProjectItem()
+                if (projectInfo.projectArray[index].tasks.length > 0) {
+                    for (let i = 0; i < projectInfo.projectArray[index].tasks.length; i++) {
+                        let newTask = uploadTasks.upload(i)
+                        document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
+                    }
                 }
             }
             
