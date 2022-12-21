@@ -1,10 +1,12 @@
 import uploadTasks from "./uploadTasks";
 import getId from "./getId";
 import storage from "./localStorage";
+import killTask from "./killTask";
 
 
 const updateDirectory = (() => {
         let refresh = (btn) => {
+            killTask.reptitions = 0
             let projectName = document.getElementById('title').innerHTML.trim()
             let index = getId(projectName)
             let taskContainer = document.getElementById('content')

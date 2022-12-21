@@ -26,7 +26,6 @@ const createModal = (() => {
             }
         }
         let projectName = storage.getProjectItem().projectArray[j].projectName + " / " + storage.getProjectItem().projectArray[j].tasks[id].project
-        console.log(storage.getProjectItem().projectArray[j].tasks[id].project)
         modalBody.append(newElement.makeDiv('','', ('Project: ' + projectName)))
         modalBody.append(newElement.makeDiv('','', ('Title: ' + storage.getProjectItem().projectArray[j].tasks[id].objective)))
         modalBody.append(newElement.makeDiv('','', ('Description: ' + storage.getProjectItem().projectArray[j].tasks[id].desc)))

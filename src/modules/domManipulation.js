@@ -173,18 +173,19 @@ const domMan = (() => {
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
+        let updatedValue = storage.getProjectItem()
         if (title.textContent != 'Inbox') {
-            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
-            projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+            updatedValue.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+            updatedValue.projectArray[index].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
         } else {
-            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+            updatedValue.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
         }
-        storage.updateProjectInfo(projectInformation)
+        storage.updateProjectInfo(updatedValue)
         document.getElementById('objective').value = ''
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
-        let taskIndex = projectInformation.projectArray[index].tasks.length - 1
+        let taskIndex = updatedValue.projectArray[index].tasks.length - 1
         let newTask = uploadTasks.upload(taskIndex)
         document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
     }

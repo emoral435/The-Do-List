@@ -1,27 +1,28 @@
 import getId from "./getId"
 import storage from "./localStorage"
-import uploadTasks from "./uploadTasks"
 
 const killTask = (() => {
     const kill = (taskId) => {
-        let projectIndex = getId(document.getElementById('title'))
+        console.log(reptitions)
+        let taskIdName = 'task' + taskId
+        let projectIndex = getId(document.getElementById('title').innerHTML)
+        let contentDiv = document.getElementById('content')
+        contentDiv.removeChild(document.getElementById(taskIdName))
         let updatedProject = storage.getProjectItem()
-        updatedProject.projectArray[projectIndex].tasks.splice(taskId, 1)
+        console.log(updatedProject)
+        console.log(projectIndex)
+        console.log(updatedProject.projectArray[projectIndex].tasks)
+        updatedProject.projectArray[projectIndex].tasks.splice((taskId - reptitions), 1)
+        console.log(updatedProject.projectArray[projectIndex].tasks)
         storage.updateProjectInfo(updatedProject)
-        let taskContainer = document.getElementById('content')
-            while (taskContainer.childNodes.length > 4) {
-                taskContainer.removeChild(taskContainer.firstChild)
-            }
-        if (storage.getProjectItem().projectArray[projectIndex].tasks.length > 0) {
-            console.log('this is getting clickedddd')
-            for (let i = 0; i < storage.getProjectItem().projectArray[projectIndex].tasks.length; i++) {
-                let newTask = uploadTasks.upload(i)
-                document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
-            }
-        }
+        if (updatedProject.projectArray[projectIndex].tasks.length == 0) {
+            reptitions = 0
+        } else {reptitions++}
     }
 
-    return { kill }
+    let reptitions = 0
+
+    return { kill, reptitions }
 })()
 
 export default killTask
