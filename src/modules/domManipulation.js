@@ -82,12 +82,12 @@ const domMan = (() => {
         })
 
         function additionalProject() {
-            const projectName = document.getElementById('name').value
+            const projectName = document.getElementById('name').value.trim()
             document.getElementById('name').value = ''
             let i = 0
             let j =0
-            while (i < projectInformation.nameArray.length) {
-                if (projectInformation.nameArray[i] === projectName) {
+            while (i < storage.getProjectItem().nameArray.length) {
+                if (storage.getProjectItem().nameArray[i] === projectName) {
                     j++
                     break
                 }
@@ -96,9 +96,9 @@ const domMan = (() => {
 
             if (j == 0) {
                 let element = iFactory(projectName)
-                projectInformation.projectArray.push(element)
-                projectInformation.nameArray.push(projectName)
-                storage.updateProjectInfo(projectInformation)
+                let updatedProject = storage.getProjectItem()
+                updatedProject.projectArray.push(element)
+                updatedProject.nameArray.push(projectName)
                 const addOn = document.getElementById('additionalProjects')
                 const btn = makeBtn(["hover:bg-[#cccccc]", "rounded-md", "w-full", "py-2", "flex", "justify-between", "items-center", "h-12", "px-1", 'directory'])
                 const img = makeImg(["h-[1.3rem]", "w-[1.3rem]", "flex", "justify-start", "items-center", "mx-4", "box-content"])
@@ -118,42 +118,43 @@ const domMan = (() => {
                         updateDirectory.refresh(btn)
                     })
                 })
+                storage.updateProjectInfo(updatedProject)
             }
         }
+    }
 
-        function makeBtn(array) {
-            const btn = document.createElement('button')
-            for (let i = 0; i < array.length; i++) {
-                btn.classList.add(array[i])
-            }
-            return btn
+    function makeBtn(array) {
+        const btn = document.createElement('button')
+        for (let i = 0; i < array.length; i++) {
+            btn.classList.add(array[i])
         }
+        return btn
+    }
 
-        function makeX(array) {
-            const x = document.createElement('div')
-            x.innerHTML = '&times;'
-            for(let i =0; i < array.length; i++) {
-                x.classList.add(array[i])
-            }
-            return x
+    function makeX(array) {
+        const x = document.createElement('div')
+        x.innerHTML = '&times;'
+        for(let i =0; i < array.length; i++) {
+            x.classList.add(array[i])
         }
+        return x
+    }
 
-        function makeImg(array) {
-            const img = new Image(20,20)
-            img.src = '/src/modules/project-image.png'
-            for (let i = 0; i < array.length; i++) {
-                img.classList.add(array[i])
-            }
-            return img
+    function makeImg(array) {
+        const img = new Image(20,20)
+        img.src = '/src/modules/project-image.png'
+        for (let i = 0; i < array.length; i++) {
+            img.classList.add(array[i])
         }
+        return img
+    }
 
-        function makeDiv(projectName) {
-            const div = document.createElement('div')
-            div.textContent = projectName
-            div.dataset.projectName = projectName
-            div.dataset.id = projectInformation.nameArray.length - 1
-            return div
-        }
+    function makeDiv(projectName) {
+        const div = document.createElement('div')
+        div.textContent = projectName
+        div.dataset.projectName = projectName
+        div.dataset.id = projectInformation.nameArray.length - 1
+        return div
     }
 
     const addTask = () => {
@@ -178,13 +179,13 @@ const domMan = (() => {
         } else {
             projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
         }
+        storage.updateProjectInfo(projectInformation)
         document.getElementById('objective').value = ''
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
         let taskIndex = projectInformation.projectArray[index].tasks.length - 1
         let newTask = uploadTasks.upload(taskIndex)
-        storage.updateProjectInfo(projectInformation)
         document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
     }
 
@@ -194,6 +195,10 @@ const domMan = (() => {
         activateModals,
         addProject,
         addTask,
+        makeBtn,
+        makeDiv,
+        makeImg,
+        makeX,
     }
 })();
 

@@ -1,6 +1,7 @@
 import newElement from "./createElements"
 import projectInformation from "./projectInformation"
 import getId from "./getId"
+import storage from "./localStorage"
 
 const createModal = (() => {
     const taskModal = (id) => {
@@ -19,16 +20,17 @@ const createModal = (() => {
         let modalBody = newElement.makeDiv('modal-body')
         let title = document.getElementById('title').textContent
         let j;
-        for (let i = 0; i < projectInformation.nameArray.length; i++) {
-            if (projectInformation.nameArray[i] == title) {
+        for (let i = 0; i < storage.getProjectItem().nameArray.length; i++) {
+            if (storage.getProjectItem().nameArray[i] == title) {
                 j = i
             }
         }
-        modalBody.append(newElement.makeDiv('','', ('Project: ' + projectInformation.projectArray[j].tasks[id].project)))
-        modalBody.append(newElement.makeDiv('','', ('Title: ' + projectInformation.projectArray[j].tasks[id].objective)))
-        modalBody.append(newElement.makeDiv('','', ('Description: ' + projectInformation.projectArray[j].tasks[id].desc)))
-        modalBody.append(newElement.makeDiv('','', ('Due Date: ' + projectInformation.projectArray[j].tasks[id].date)))
-        modalBody.append(newElement.makeDiv('','', ('Priority: ' + projectInformation.projectArray[j].tasks[id].priority)))
+        console.log(storage.getProjectItem().projectArray[j].tasks[id].project)
+        modalBody.append(newElement.makeDiv('','', ('Project: ' + storage.getProjectItem().projectArray[j].tasks[id].project)))
+        modalBody.append(newElement.makeDiv('','', ('Title: ' + storage.getProjectItem().projectArray[j].tasks[id].objective)))
+        modalBody.append(newElement.makeDiv('','', ('Description: ' + storage.getProjectItem().projectArray[j].tasks[id].desc)))
+        modalBody.append(newElement.makeDiv('','', ('Due Date: ' + storage.getProjectItem().projectArray[j].tasks[id].date)))
+        modalBody.append(newElement.makeDiv('','', ('Priority: ' + storage.getProjectItem().projectArray[j].tasks[id].priority)))
         godDiv.append(modalBody)
         return godDiv
     }
