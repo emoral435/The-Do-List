@@ -177,7 +177,7 @@ const domMan = (() => {
             projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
             projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
         } else {
-            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
+            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
         }
         storage.updateProjectInfo(projectInformation)
         document.getElementById('objective').value = ''
