@@ -5,7 +5,6 @@ const killTask = (() => {
     const kill = (taskId) => {
         let taskIdName = 'task' + taskId
         let projectIndex = getId(document.getElementById('title'))
-        console.log(projectIndex)
         let contentDiv = document.getElementById('content')
         contentDiv.removeChild(document.getElementById(taskIdName))
         let updatedProject = storage.getProjectItem()

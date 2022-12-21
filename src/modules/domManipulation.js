@@ -31,6 +31,12 @@ const domMan = (() => {
                 title.textContent = text
                 })
             }
+        let clicked = document.querySelectorAll('.directory')
+        clicked.forEach( btn => {
+            btn.addEventListener('click', () => {
+                updateDirectory.refresh(btn)
+            })
+        })
         }
 
     const navToggle = () => {
@@ -112,12 +118,6 @@ const domMan = (() => {
                 updateButtons(document.querySelectorAll('.directory'))
                 buttonChange()
                 killProject()
-                let clicked = document.querySelectorAll('.directory')
-                clicked.forEach( btn => {
-                    btn.addEventListener('click', () => {
-                        updateDirectory.refresh(btn)
-                    })
-                })
                 storage.updateProjectInfo(updatedProject)
             }
         }
