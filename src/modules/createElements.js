@@ -126,6 +126,7 @@ const newElement = (() => {
         for (let i = 0; i < array.length; i++) {
             textarea.classList.add(array[i])
         }
+        textarea.setAttribute('id', strId)
         textarea.cols = '5'
         textarea.rows = '5'
         return textarea

@@ -1,7 +1,8 @@
 import newElement from "./createElements"
-import projectInformation from "./projectInformation"
+import makeTask from "./makeTask"
 import getId from "./getId"
 import storage from "./localStorage"
+import uploadTasks from "./uploadTasks"
 
 const createModal = (() => {
     const taskModal = (id) => {
@@ -74,22 +75,46 @@ const createModal = (() => {
         lastBtn.setAttribute('form', 'taskForm')
         const title = document.getElementById('title').innerHTML
         let index = getId(title)
-        lastBtn.addEventListener('click', () =>{
+        lastBtn.addEventListener('click', (event) =>{
+            const overlay = document.getElementById('overlay')
+            event.preventDefault()
             let objectId = id + 'objective'
-            let descId = id + 'desc'
+            let descId = id + 'description'
             let priorityId = id + 'priority'
             let dateId = id + 'date'
             let objective = document.getElementById(objectId).value
             let description = document.getElementById(descId).value
             let priority = document.getElementById(priorityId).value
             let date = document.getElementById(dateId).value
-            projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
-            projectInformation.projectArray[0].tasks.push(makeTask(objective,description,priority,date))
+            let projectName = document.getElementById('title').innerHTML
+            let updatedProject = storage.getProjectItem()
+            if (index != 0) {
+                for (let i = 0; i < updatedProject.projectArray[0].tasks.length; i++) {
+                    if (updatedProject.projectArray[0].tasks[i].objective == updatedProject.projectArray[index].tasks[id].objective) {
+                        updatedProject.projectArray[0].tasks.splice(i, 1, makeTask(objective, description, priority, date, projectName))
+                    }
+                }
+                updatedProject.projectArray[index].tasks.splice(id, 1, makeTask(objective, description, priority, date, projectName))
+            } else {
+                updatedProject.projectArray[index].tasks.splice(id, 1, makeTask(objective, description, priority, date, projectName))
+            }
             document.getElementById(objectId).value = ''
             document.getElementById(descId).value = ''
             document.getElementById(priorityId).value = '0'
             document.getElementById(dateId).value = ''
-            storage.updateProjectInfo(projectInformation)
+            storage.updateProjectInfo(updatedProject)
+            let taskContainer = document.getElementById('content')
+            while (taskContainer.childNodes.length > 4) {
+                taskContainer.removeChild(taskContainer.firstChild)
+            }
+            let projectInfo = storage.getProjectItem()
+            if (projectInfo.projectArray[index].tasks.length > 0) {
+                for (let i = 0; i < projectInfo.projectArray[index].tasks.length; i++) {
+                    let newTask = uploadTasks.upload(i)
+                    document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
+                }
+            }
+            overlay.classList.remove('active')
         })
         let lastDiv = newElement.makeDiv("mx-2 relative")
         let firstSpan = newElement.otherSpan(true)

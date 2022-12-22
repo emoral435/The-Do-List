@@ -32,9 +32,10 @@ const uploadTasks = (() => {
         detailDiv.append(detailsButton, taskModal)
         taskHub.append(detailDiv)
         let editImg = newElement.makeEditImg(id)
+        editImg.dataset.modalTarget = id + 'otherModal'
         editImg.addEventListener('click', () => {
-            const editModal = document.querySelector(editImg.dataset.modalTarget)
-            closeModal(editModal)
+            let editModal = document.getElementById(editImg.dataset.modalTarget)
+            openModal(editModal)
         })
         let otherEditModal = createModal.editModal(id)
         taskHub.append(editImg, otherEditModal)
