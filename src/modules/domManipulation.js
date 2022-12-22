@@ -142,7 +142,7 @@ const domMan = (() => {
 
     function makeImg(array) {
         const img = new Image(20,20)
-        img.src = './src/modules/project-image.png'
+        img.src = 'src/modules/project-image.png'
         for (let i = 0; i < array.length; i++) {
             img.classList.add(array[i])
         }

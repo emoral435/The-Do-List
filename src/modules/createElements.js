@@ -35,7 +35,7 @@ const newElement = (() => {
         let str = "h-6 w-6 cursor-pointer hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300"
         let array = str.split(' ')
         let img = document.createElement('img')
-        img.src = './src/modules/edit.svg'
+        img.src = 'src/modules/edit.svg'
         img.dataset.modalTarget = '#' + id + 'otherModal'
         for (let i = 0; i < array.length; i++) {
             img.classList.add(array[i])
@@ -45,7 +45,7 @@ const newElement = (() => {
 
     function makeTrashImg(id) {
         let img = document.createElement('img')
-        img.src = './src/modules/trash.svg'
+        img.src = 'src/modules/trash.svg'
         img.dataset.id = id
         let str = "h-6 w-6 cursor-pointer trash hover:-translate-y-1 hover:scale-110 transition ease-in-out duration-300"
         let array = str.split(' ')
