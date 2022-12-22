@@ -15,7 +15,7 @@ const storage = (() => {
                 document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
             }
         }
-        // loadProjectDom()
+        loadProjectDom()
     }
 
     const updateProjectInfo = (updatedObject) => {
@@ -43,12 +43,6 @@ const storage = (() => {
             updateButtons(document.querySelectorAll('.directory'))
             domMan.buttonChange()
             killProject()
-            let clicked = document.querySelectorAll('.directory')
-            clicked.forEach( btn => {
-                btn.addEventListener('click', () => {
-                    updateDirectory.refresh(btn)
-                })
-            })
         }
     }
 

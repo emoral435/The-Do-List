@@ -2,7 +2,10 @@ import domMan from './modules/domManipulation'
 import storage from './modules/localStorage'
  
 // let fixUpload = storage.getProjectItem()
-// fixUpload.projectArray[1].tasks.splice(0,1)
+// fixUpload.nameArray.splice(2,1)
+// fixUpload.nameArray.push('Upcoming')
+// fixUpload.projectArray.splice(2,1)
+// fixUpload.projectArray.push({projectName: "Upcoming", tasks: []})
 // storage.updateProjectInfo(fixUpload)
 
 // this controls the buttons changing color so that they hold their hover effect for when they are clicked 
