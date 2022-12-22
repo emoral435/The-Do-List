@@ -20,7 +20,8 @@ const dates = (() => {
         }
         return todayArray
     }
-
+ 
+    
     const upcoming = () => {
         let upArray = []
         let project = storage.getProjectItem()
