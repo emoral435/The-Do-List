@@ -1,4 +1,4 @@
-# Restaurant Page
+# To Do List
 This app is a personal test to see how I can replicate something that I use and adore every day.
 A simple To-Do-List.
 However, I believe that To Do Lists have the power to change the manner and direction that you live your life in. It gives you a better sense at what you truly prioritize in life.
