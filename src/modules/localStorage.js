@@ -1,6 +1,5 @@
 import projectInformation from "./projectInformation"
 import uploadTasks from "./uploadTasks"
-import updateDirectory from "./updateDirectory"
 import domMan from "./domManipulation"
 import updateButtons from "./updateButtons"
 import killProject from "./killProject"

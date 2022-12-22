@@ -55,12 +55,21 @@ const newElement = (() => {
         return img
     }
 
-    function circleSpan(id) {
-        let str = "min-h-[20px] min-w-[20px] inline-block bg-white border-red-500 border-[3px] rounded-[50%] hover:bg-slate-300 mx-3"
+    function circleSpan(id, priority) {
+        let str = "min-h-[20px] min-w-[20px] inline-block bg-white border-[3px] rounded-[50%] hover:bg-slate-300 mx-3"
         let array = str.split(' ')
         let span = document.createElement('span')
         for (let i = 0; i < array.length; i++) {
             span.classList.add(array[i])
+        }
+        if (priority == 0) {
+            span.classList.add('border-black')
+        } else if (priority == 1) {
+            span.classList.add('border-blue-500')
+        } else if (priority == 2) {
+            span.classList.add('border-orange-500')
+        } else if (priority == 3) {
+            span.classList.add('border-red-500')
         }
         span.dataset.id = id
         return span

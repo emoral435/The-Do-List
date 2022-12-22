@@ -168,7 +168,6 @@ const domMan = (() => {
         // this checks where the task is being placed in
         const title = document.getElementById('title')
         let index = getId(title.innerHTML)
-        console.log('clicked')
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value

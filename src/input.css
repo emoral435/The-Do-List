@@ -129,3 +129,11 @@ body {
     overflow-wrap: normal;
     word-break: normal;
 }
+
+.border-orange-500 {
+    border-color: rgb(249 115 22);
+}
+
+.border-blue-500 {
+    border-color: rgb(59 130 246);
+}

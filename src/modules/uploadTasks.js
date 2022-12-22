@@ -1,22 +1,21 @@
 import newElement from "./createElements"
 import createModal from "./createModal"
-import projectInformation from "./projectInformation"
 import getId from "./getId"
 import killTask from "./killTask"
 import storage from "./localStorage"
 
 const uploadTasks = (() => {
-    const upload = (id, priority) => {
+    const upload = (id) => {
         let taskId = 'task' + id
         let taskDiv = newElement.makeDiv('', taskId)
         let grandFather = newElement.makeDiv('rounded-[10px] flex justify-between hover:bg-[#cccccc] min-h-[3rem] items-center hover:relative hover:bottom-1 hover:shadow-xl flex-col lg:flex-row py-2')
+        let title = document.getElementById('title')
+        let index = getId(title.innerHTML)
         let taskName = newElement.makeDiv('flex items-start justify-start lg:justify-start lg:items-center w-full')
-        let circle = newElement.circleSpan(id)
+        let circle = newElement.circleSpan(id, storage.getProjectItem().projectArray[index].tasks[id].priority)
         circle.addEventListener('click', () => {
             killTask.kill(id)
         })
-        let title = document.getElementById('title')
-        let index = getId(title.innerHTML)
         let objectTitle = storage.getProjectItem().projectArray[index].tasks[id].objective
         let taskNameStringDiv = newElement.makeDiv('','', objectTitle)
         taskName.append(circle, taskNameStringDiv)

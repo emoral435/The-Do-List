@@ -1,4 +1,3 @@
-import projectInformation from "./projectInformation"
 import storage from "./localStorage"
 
 export default function getId(title) {

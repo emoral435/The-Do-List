@@ -18,7 +18,6 @@ const updateDirectory = (() => {
                 if (projectInfo.projectArray[index].tasks.length > 0) {
                     for (let i = 0; i < projectInfo.projectArray[index].tasks.length; i++) {
                         let newTask = uploadTasks.upload(i)
-                        console.log(newTask)
                         document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
                     }
                 }
