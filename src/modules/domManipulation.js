@@ -4,22 +4,40 @@ import iFactory from "./informationFactory";
 import killProject from "./killProject";
 import getId from "./getId";
 import makeTask from "./makeTask";
-
+import storage from "./localStorage";
+import uploadTasks from "./uploadTasks";
+import updateDirectory from "./updateDirectory";
 
 const domMan = (() => {
+
     const buttonChange = () => {
         let domBtn = document.querySelectorAll('.directory')
-        domBtn.forEach( btn => {
-            btn.addEventListener('click', () => {
-                domBtn.forEach ( btn => {
+        for (let i = 0; i < domBtn.length; i++) {
+            domBtn[i].addEventListener('click', () => {
+                domBtn.forEach( btn => {
                     if (btn.classList.contains('toggled')) {
-                        btn.classList.remove('toggled');
+                        btn.classList.remove('toggled')
                     }
                 })
-                btn.classList.add('toggled')
+                const title = document.getElementById('title')
+                let divChild = domBtn[i].childNodes
+                let text
+                if (divChild.length > 3) {
+                    text = divChild[3].textContent
+                } else {
+                    text = divChild[1].textContent
+                }
+                domBtn[i].classList.add('toggled')
+                title.textContent = text
+                })
+            }
+        let clicked = document.querySelectorAll('.directory')
+        clicked.forEach( btn => {
+            btn.addEventListener('click', () => {
+                updateDirectory.refresh(btn)
             })
         })
-    };
+        }
 
     const navToggle = () => {
         const toggleButton = document.getElementsByClassName('toggle-button')[0]
@@ -40,13 +58,6 @@ const domMan = (() => {
             btn.addEventListener('click', () => {
                 const modal = document.querySelector(btn.dataset.modalTarget)
                 openModal(modal)
-            })
-        })
-
-        overlay.addEventListener('click', () => {
-            const modals = document.querySelectorAll('.modal-active')
-            modals.foreEach( modal => {
-                closeModal(modal)
             })
         })
 
@@ -77,12 +88,12 @@ const domMan = (() => {
         })
 
         function additionalProject() {
-            const projectName = document.getElementById('name').value
+            const projectName = document.getElementById('name').value.trim()
             document.getElementById('name').value = ''
             let i = 0
             let j =0
-            while (i < projectInformation.nameArray.length) {
-                if (projectInformation.nameArray[i] === projectName) {
+            while (i < storage.getProjectItem().nameArray.length) {
+                if (storage.getProjectItem().nameArray[i] === projectName) {
                     j++
                     break
                 }
@@ -91,13 +102,14 @@ const domMan = (() => {
 
             if (j == 0) {
                 let element = iFactory(projectName)
-                projectInformation.projectArray.push(element)
-                console.log(projectInformation.projectArray)
+                let updatedProject = storage.getProjectItem()
+                updatedProject.projectArray.push(element)
+                updatedProject.nameArray.push(projectName)
                 const addOn = document.getElementById('additionalProjects')
-                projectInformation.nameArray.push(projectName)
                 const btn = makeBtn(["hover:bg-[#cccccc]", "rounded-md", "w-full", "py-2", "flex", "justify-between", "items-center", "h-12", "px-1", 'directory'])
                 const img = makeImg(["h-[1.3rem]", "w-[1.3rem]", "flex", "justify-start", "items-center", "mx-4", "box-content"])
                 const div = makeDiv(projectName)
+                div.classList.add('closest')
                 const x = makeX(['ml-4','z-10','flex','justify-end', 'killbill'])
                 btn.append(img)
                 btn.append(div)
@@ -106,43 +118,43 @@ const domMan = (() => {
                 updateButtons(document.querySelectorAll('.directory'))
                 buttonChange()
                 killProject()
-                
+                storage.updateProjectInfo(updatedProject)
             }
         }
+    }
 
-        function makeBtn(array) {
-            const btn = document.createElement('button')
-            for (let i = 0; i < array.length; i++) {
-                btn.classList.add(array[i])
-            }
-            return btn
+    function makeBtn(array) {
+        const btn = document.createElement('button')
+        for (let i = 0; i < array.length; i++) {
+            btn.classList.add(array[i])
         }
+        return btn
+    }
 
-        function makeX(array) {
-            const x = document.createElement('div')
-            x.innerHTML = '&times;'
-            for(let i =0; i < array.length; i++) {
-                x.classList.add(array[i])
-            }
-            return x
+    function makeX(array) {
+        const x = document.createElement('div')
+        x.innerHTML = '&times;'
+        for(let i =0; i < array.length; i++) {
+            x.classList.add(array[i])
         }
+        return x
+    }
 
-        function makeImg(array) {
-            const img = new Image(20,20)
-            img.src = '/src/modules/project-image.png'
-            for (let i = 0; i < array.length; i++) {
-                img.classList.add(array[i])
-            }
-            return img
+    function makeImg(array) {
+        const img = new Image(20,20)
+        img.src = '/src/modules/project-image.png'
+        for (let i = 0; i < array.length; i++) {
+            img.classList.add(array[i])
         }
+        return img
+    }
 
-        function makeDiv(projectName) {
-            const div = document.createElement('div')
-            div.textContent = projectName
-            div.dataset.projectName = projectName
-            div.dataset.id = projectInformation.nameArray.length - 1
-            return div
-        }
+    function makeDiv(projectName) {
+        const div = document.createElement('div')
+        div.textContent = projectName
+        div.dataset.projectName = projectName
+        div.dataset.id = projectInformation.nameArray.length - 1
+        return div
     }
 
     const addTask = () => {
@@ -155,17 +167,26 @@ const domMan = (() => {
     function additionalTask() {
         // this checks where the task is being placed in
         const title = document.getElementById('title')
-        let index = getId(title)
+        let index = getId(title.innerHTML)
         let objective = document.getElementById('objective').value
         let description = document.getElementById('description').value
         let priority = document.getElementById('priority').value
         let date = document.getElementById('date').value
-        projectInformation.projectArray[index].tasks.push(makeTask(objective,description,priority,date))
-        console.log(projectInformation.projectArray[index].tasks)
+        let updatedValue = storage.getProjectItem()
+        if (title.textContent != 'Inbox') {
+            updatedValue.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+            updatedValue.projectArray[index].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+        } else {
+            updatedValue.projectArray[0].tasks.push(makeTask(objective,description,priority,date, title.textContent.trim()))
+        }
+        storage.updateProjectInfo(updatedValue)
         document.getElementById('objective').value = ''
         document.getElementById('description').value = ''
         document.getElementById('priority').value = '0'
         document.getElementById('date').value = ''
+        let taskIndex = updatedValue.projectArray[index].tasks.length - 1
+        let newTask = uploadTasks.upload(taskIndex)
+        document.getElementById('content').insertBefore(newTask, document.getElementById('taskButton'))
     }
 
     return {
@@ -174,6 +195,10 @@ const domMan = (() => {
         activateModals,
         addProject,
         addTask,
+        makeBtn,
+        makeDiv,
+        makeImg,
+        makeX,
     }
 })();
 
