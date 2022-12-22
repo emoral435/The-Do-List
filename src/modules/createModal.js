@@ -3,6 +3,7 @@ import makeTask from "./makeTask"
 import getId from "./getId"
 import storage from "./localStorage"
 import uploadTasks from "./uploadTasks"
+import { format, parseISO } from "date-fns"
 
 const createModal = (() => {
     const taskModal = (id) => {
@@ -21,11 +22,13 @@ const createModal = (() => {
         let modalBody = newElement.makeDiv('modal-body')
         let title = document.getElementById('title').textContent
         let newIndex = getId(title)
+        let date = format(parseISO(storage.getProjectItem().projectArray[newIndex].tasks[id].date), 'MMMM dd, yyyy')
+        console.log(date)
         let projectName = storage.getProjectItem().projectArray[newIndex].projectName + " / " + storage.getProjectItem().projectArray[newIndex].tasks[id].project
         modalBody.append(newElement.makeDiv('','', ('Project: ' + projectName)))
         modalBody.append(newElement.makeDiv('','', ('Title: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].objective)))
         modalBody.append(newElement.makeDiv('','', ('Description: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].desc)))
-        modalBody.append(newElement.makeDiv('','', ('Due Date: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].date)))
+        modalBody.append(newElement.makeDiv('','', ('Due Date: ' + date)))
         modalBody.append(newElement.makeDiv('','', ('Priority: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].priority)))
         godDiv.append(modalBody)
         return godDiv
