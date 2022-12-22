@@ -1062,6 +1062,10 @@ body {
   border-color: rgb(59 130 246);
 }
 
+.hidden {
+  display: none;
+}
+
 .hover\:relative:hover {
   position: relative;
 }

@@ -137,3 +137,7 @@ body {
 .border-blue-500 {
     border-color: rgb(59 130 246);
 }
+
+.hidden {
+    display: none;
+}

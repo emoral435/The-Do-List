@@ -8,7 +8,16 @@ const killTask = (() => {
         let contentDiv = document.getElementById('content')
         contentDiv.removeChild(document.getElementById(taskIdName))
         let updatedProject = storage.getProjectItem()
-        updatedProject.projectArray[projectIndex].tasks.splice((taskId - reptitions), 1)
+        if (projectIndex != 0) {
+            for (let i = 0; i < updatedProject.projectArray[0].tasks.length; i++) {
+                if (updatedProject.projectArray[0].tasks[i].objective == updatedProject.projectArray[projectIndex].tasks[taskId].objective) {
+                    updatedProject.projectArray[0].tasks.splice(i,1)
+                }
+            }
+            updatedProject.projectArray[projectIndex].tasks.splice((taskId - reptitions), 1)
+        } else {
+            updatedProject.projectArray[projectIndex].tasks.splice((taskId - reptitions), 1)
+        }
         storage.updateProjectInfo(updatedProject)
         if (updatedProject.projectArray[projectIndex].tasks.length == 0) {
             reptitions = 0
