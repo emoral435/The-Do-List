@@ -1,6 +1,8 @@
 import domMan from './modules/domManipulation'
 import storage from './modules/localStorage'
 
+// this makes sure that the storage works on first load of the page!
+storage.setup()
 // this controls the buttons changing color so that they hold their hover effect for when they are clicked 
 domMan.buttonChange() 
 // this checks local storage if there are any previous projects, and it loads it

@@ -22,7 +22,12 @@ const createModal = (() => {
         let modalBody = newElement.makeDiv('modal-body')
         let title = document.getElementById('title').textContent
         let newIndex = getId(title)
-        let date = format(parseISO(storage.getProjectItem().projectArray[newIndex].tasks[id].date), 'MMMM dd, yyyy')
+        let date;
+        if (storage.getProjectItem().projectArray[newIndex].tasks[id].date != '') {
+            date = format(parseISO(storage.getProjectItem().projectArray[newIndex].tasks[id].date), 'MMMM dd, yyyy')
+        } else {
+            date = 'No Due Date! Lucky!'
+        }
         console.log(date)
         let projectName = storage.getProjectItem().projectArray[newIndex].projectName + " / " + storage.getProjectItem().projectArray[newIndex].tasks[id].project
         modalBody.append(newElement.makeDiv('','', ('Project: ' + projectName)))

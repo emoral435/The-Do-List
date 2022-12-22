@@ -1,10 +1,34 @@
-import projectInformation from "./projectInformation"
 import uploadTasks from "./uploadTasks"
 import domMan from "./domManipulation"
 import updateButtons from "./updateButtons"
 import killProject from "./killProject"
 
 const storage = (() => {
+    
+    const setup = () => {
+        if (localStorage.getItem('firstTime') == null) {
+            let project = {
+                nameArray: ['Inbox', 'Today', 'Upcoming'],
+                projectArray: [
+                    {
+                        projectName: 'Inbox',
+                        tasks: []
+                    },
+                    {
+                        projectName: 'Today',
+                        tasks: []
+                    },
+                    {
+                        projectName: 'Upcoming',
+                        tasks: []
+                    }
+                ]
+            }
+            updateProjectInfo(project)
+            localStorage.setItem('firstTime', 'You have visited this page more than once!')
+        }
+    }
+
     const initialize = () => {
         let newObject = getProjectItem()
         updateProjectInfo(newObject)
@@ -45,7 +69,7 @@ const storage = (() => {
         }
     }
 
-    return { updateProjectInfo, getProjectItem, initialize, }
+    return { updateProjectInfo, getProjectItem, initialize, setup}
 })()
 
 export default storage
