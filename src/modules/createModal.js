@@ -19,18 +19,13 @@ const createModal = (() => {
         godDiv.append(modalHeader)
         let modalBody = newElement.makeDiv('modal-body')
         let title = document.getElementById('title').textContent
-        let j;
-        for (let i = 0; i < storage.getProjectItem().nameArray.length; i++) {
-            if (storage.getProjectItem().nameArray[i] == title) {
-                j = i
-            }
-        }
-        let projectName = storage.getProjectItem().projectArray[j].projectName + " / " + storage.getProjectItem().projectArray[j].tasks[id].project
+        let newIndex = getId(title)
+        let projectName = storage.getProjectItem().projectArray[newIndex].projectName + " / " + storage.getProjectItem().projectArray[newIndex].tasks[id].project
         modalBody.append(newElement.makeDiv('','', ('Project: ' + projectName)))
-        modalBody.append(newElement.makeDiv('','', ('Title: ' + storage.getProjectItem().projectArray[j].tasks[id].objective)))
-        modalBody.append(newElement.makeDiv('','', ('Description: ' + storage.getProjectItem().projectArray[j].tasks[id].desc)))
-        modalBody.append(newElement.makeDiv('','', ('Due Date: ' + storage.getProjectItem().projectArray[j].tasks[id].date)))
-        modalBody.append(newElement.makeDiv('','', ('Priority: ' + storage.getProjectItem().projectArray[j].tasks[id].priority)))
+        modalBody.append(newElement.makeDiv('','', ('Title: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].objective)))
+        modalBody.append(newElement.makeDiv('','', ('Description: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].desc)))
+        modalBody.append(newElement.makeDiv('','', ('Due Date: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].date)))
+        modalBody.append(newElement.makeDiv('','', ('Priority: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].priority)))
         godDiv.append(modalBody)
         return godDiv
     }
