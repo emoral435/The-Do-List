@@ -28,7 +28,6 @@ const createModal = (() => {
         } else {
             date = 'No Due Date! Lucky!'
         }
-        console.log(date)
         let projectName = storage.getProjectItem().projectArray[newIndex].projectName + " / " + storage.getProjectItem().projectArray[newIndex].tasks[id].project
         modalBody.append(newElement.makeDiv('','', ('Project: ' + projectName)))
         modalBody.append(newElement.makeDiv('','', ('Title: ' + storage.getProjectItem().projectArray[newIndex].tasks[id].objective)))

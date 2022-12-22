@@ -52,6 +52,7 @@ const newElement = (() => {
         for (let i = 0; i < array.length; i++) {
             img.classList.add(array[i])
         }
+        
         return img
     }
 
